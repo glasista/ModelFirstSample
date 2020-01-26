@@ -43,7 +43,6 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
     <Property Name="DateOfPublication" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Property1" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Categories">
     <Key>
@@ -160,7 +159,6 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" Nullable="false" />
           <Property Name="DateOfPublication" Type="String" Nullable="false" />
-          <Property Name="Property1" Type="String" Nullable="false" />
           <NavigationProperty Name="ActorMovie" Relationship="ModelFirstSample.DB.MovieActorMovie" FromRole="Movie" ToRole="ActorMovie" />
           <NavigationProperty Name="CategoryMovie" Relationship="ModelFirstSample.DB.MovieCategoryMovie" FromRole="Movie" ToRole="CategoryMovie" />
         </EntityType>
@@ -262,7 +260,6 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="DateOfPublication" ColumnName="DateOfPublication" />
-          <ScalarProperty Name="Property1" ColumnName="Property1" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

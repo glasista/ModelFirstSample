@@ -1,8 +1,8 @@
- 
+
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 01/26/2020 21:37:17
+-- Date Created: 01/26/2020 23:14:37
 -- Generated from EDMX file: D:\Praca dyplomowa\ćwiczenia labolatoryjne\1\ModelFirstSample\ModelFirstSample.DB\MoviesModel.edmx
 -- --------------------------------------------------
 
@@ -66,8 +66,7 @@ GO
 CREATE TABLE [dbo].[Movies] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Title] nvarchar(max)  NOT NULL,
-    [DateOfPublication] nvarchar(max)  NOT NULL,
-    [Property1] nvarchar(max)  NOT NULL
+    [DateOfPublication] nvarchar(max)  NOT NULL
 );
 GO
 
