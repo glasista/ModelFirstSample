@@ -52,13 +52,65 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Actor.cs">
+      <DependentUpon>MoviesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ActorMovie.cs">
+      <DependentUpon>MoviesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Category.cs">
+      <DependentUpon>MoviesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CategoryMovie.cs">
+      <DependentUpon>MoviesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Movie.cs">
+      <DependentUpon>MoviesModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="MovieContext.cs" />
     <Compile Include="MovieContextFactory.cs" />
+    <Compile Include="MoviesModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MoviesModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MoviesModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MoviesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MoviesModel.Designer.cs" />
+    <Compile Include="MoviesModel1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MoviesModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <EntityDeploy Include="MoviesModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MoviesModel1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="MoviesModel.edmx.diagram" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MoviesModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>MoviesModel.Context.cs</LastGenOutput>
+      <DependentUpon>MoviesModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="MoviesModel.edmx.sql" />
+    <Content Include="MoviesModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>MoviesModel.cs</LastGenOutput>
+      <DependentUpon>MoviesModel.edmx</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

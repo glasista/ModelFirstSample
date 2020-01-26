@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ModelFirstSample.DB
 {
-    public class MovieContext : DbContext
+    public partial class MovieContext : DbContext
     {
         public MovieContext(string connectionString) : base(connectionString)
         {

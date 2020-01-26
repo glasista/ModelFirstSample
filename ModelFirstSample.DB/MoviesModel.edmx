@@ -1,0 +1,318 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ModelFirstSample.DB.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ModelFirstSampleDBStoreContainer">
+    <EntitySet Name="Actors" EntityType="ModelFirstSample.DB.Store.Actors" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Movies" EntityType="ModelFirstSample.DB.Store.Movies" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Categories" EntityType="ModelFirstSample.DB.Store.Categories" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ActorMovies" EntityType="ModelFirstSample.DB.Store.ActorMovies" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CategoryMovies" EntityType="ModelFirstSample.DB.Store.CategoryMovies" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="ActorActorMovie" Association="ModelFirstSample.DB.Store.ActorActorMovie">
+      <End Role="Actor" EntitySet="Actors" />
+      <End Role="ActorMovie" EntitySet="ActorMovies" />
+    </AssociationSet>
+    <AssociationSet Name="MovieActorMovie" Association="ModelFirstSample.DB.Store.MovieActorMovie">
+      <End Role="Movie" EntitySet="Movies" />
+      <End Role="ActorMovie" EntitySet="ActorMovies" />
+    </AssociationSet>
+    <AssociationSet Name="MovieCategoryMovie" Association="ModelFirstSample.DB.Store.MovieCategoryMovie">
+      <End Role="Movie" EntitySet="Movies" />
+      <End Role="CategoryMovie" EntitySet="CategoryMovies" />
+    </AssociationSet>
+    <AssociationSet Name="CategoryCategoryMovie" Association="ModelFirstSample.DB.Store.CategoryCategoryMovie">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="CategoryMovie" EntitySet="CategoryMovies" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Actors">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Surname" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Movies">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DateOfPublication" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Property1" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Categories">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ActorMovies">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MovieId" Type="int" Nullable="false" />
+    <Property Name="ActorId" Type="int" Nullable="false" />
+    <Property Name="MovieId1" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CategoryMovies">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MovieId" Type="int" Nullable="false" />
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="ActorActorMovie">
+    <End Role="Actor" Type="ModelFirstSample.DB.Store.Actors" Multiplicity="1" />
+    <End Role="ActorMovie" Type="ModelFirstSample.DB.Store.ActorMovies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Actor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ActorMovie">
+        <PropertyRef Name="ActorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MovieActorMovie">
+    <End Role="Movie" Type="ModelFirstSample.DB.Store.Movies" Multiplicity="1" />
+    <End Role="ActorMovie" Type="ModelFirstSample.DB.Store.ActorMovies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movie">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ActorMovie">
+        <PropertyRef Name="MovieId1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MovieCategoryMovie">
+    <End Role="Movie" Type="ModelFirstSample.DB.Store.Movies" Multiplicity="1" />
+    <End Role="CategoryMovie" Type="ModelFirstSample.DB.Store.CategoryMovies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movie">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CategoryMovie">
+        <PropertyRef Name="MovieId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CategoryCategoryMovie">
+    <End Role="Category" Type="ModelFirstSample.DB.Store.Categories" Multiplicity="1" />
+    <End Role="CategoryMovie" Type="ModelFirstSample.DB.Store.CategoryMovies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CategoryMovie">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ModelFirstSample.DB" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="MovieContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Actors" EntityType="ModelFirstSample.DB.Actor" />
+          <EntitySet Name="Movies" EntityType="ModelFirstSample.DB.Movie" />
+          <EntitySet Name="Categories" EntityType="ModelFirstSample.DB.Category" />
+          <EntitySet Name="ActorMovies" EntityType="ModelFirstSample.DB.ActorMovie" />
+          <EntitySet Name="CategoryMovies" EntityType="ModelFirstSample.DB.CategoryMovie" />
+          <AssociationSet Name="ActorActorMovie" Association="ModelFirstSample.DB.ActorActorMovie">
+            <End Role="Actor" EntitySet="Actors" />
+            <End Role="ActorMovie" EntitySet="ActorMovies" />
+          </AssociationSet>
+          <AssociationSet Name="MovieActorMovie" Association="ModelFirstSample.DB.MovieActorMovie">
+            <End Role="Movie" EntitySet="Movies" />
+            <End Role="ActorMovie" EntitySet="ActorMovies" />
+          </AssociationSet>
+          <AssociationSet Name="MovieCategoryMovie" Association="ModelFirstSample.DB.MovieCategoryMovie">
+            <End Role="Movie" EntitySet="Movies" />
+            <End Role="CategoryMovie" EntitySet="CategoryMovies" />
+          </AssociationSet>
+          <AssociationSet Name="CategoryCategoryMovie" Association="ModelFirstSample.DB.CategoryCategoryMovie">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="CategoryMovie" EntitySet="CategoryMovies" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Actor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Surname" Type="String" Nullable="false" />
+          <NavigationProperty Name="ActorMovie" Relationship="ModelFirstSample.DB.ActorActorMovie" FromRole="Actor" ToRole="ActorMovie" />
+        </EntityType>
+        <EntityType Name="Movie">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" />
+          <Property Name="DateOfPublication" Type="String" Nullable="false" />
+          <Property Name="Property1" Type="String" Nullable="false" />
+          <NavigationProperty Name="ActorMovie" Relationship="ModelFirstSample.DB.MovieActorMovie" FromRole="Movie" ToRole="ActorMovie" />
+          <NavigationProperty Name="CategoryMovie" Relationship="ModelFirstSample.DB.MovieCategoryMovie" FromRole="Movie" ToRole="CategoryMovie" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="CategoryMovie" Relationship="ModelFirstSample.DB.CategoryCategoryMovie" FromRole="Category" ToRole="CategoryMovie" />
+        </EntityType>
+        <EntityType Name="ActorMovie">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MovieId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Actor" Relationship="ModelFirstSample.DB.ActorActorMovie" FromRole="ActorMovie" ToRole="Actor" />
+          <Property Name="ActorId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Movie" Relationship="ModelFirstSample.DB.MovieActorMovie" FromRole="ActorMovie" ToRole="Movie" />
+          <Property Name="MovieId1" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CategoryMovie">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Movie" Relationship="ModelFirstSample.DB.MovieCategoryMovie" FromRole="CategoryMovie" ToRole="Movie" />
+          <Property Name="MovieId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="ModelFirstSample.DB.CategoryCategoryMovie" FromRole="CategoryMovie" ToRole="Category" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="ActorActorMovie">
+          <End Type="ModelFirstSample.DB.Actor" Role="Actor" Multiplicity="1" />
+          <End Type="ModelFirstSample.DB.ActorMovie" Role="ActorMovie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Actor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ActorMovie">
+              <PropertyRef Name="ActorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MovieActorMovie">
+          <End Type="ModelFirstSample.DB.Movie" Role="Movie" Multiplicity="1" />
+          <End Type="ModelFirstSample.DB.ActorMovie" Role="ActorMovie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movie">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ActorMovie">
+              <PropertyRef Name="MovieId1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MovieCategoryMovie">
+          <End Type="ModelFirstSample.DB.Movie" Role="Movie" Multiplicity="1" />
+          <End Type="ModelFirstSample.DB.CategoryMovie" Role="CategoryMovie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movie">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CategoryMovie">
+              <PropertyRef Name="MovieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CategoryCategoryMovie">
+          <End Type="ModelFirstSample.DB.Category" Role="Category" Multiplicity="1" />
+          <End Type="ModelFirstSample.DB.CategoryMovie" Role="CategoryMovie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CategoryMovie">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelFirstSampleDBStoreContainer" CdmEntityContainer="MovieContext">
+    <EntitySetMapping Name="Actors">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelFirstSample.DB.Actor)">
+        <MappingFragment StoreEntitySet="Actors">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Movies">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelFirstSample.DB.Movie)">
+        <MappingFragment StoreEntitySet="Movies">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="DateOfPublication" ColumnName="DateOfPublication" />
+          <ScalarProperty Name="Property1" ColumnName="Property1" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelFirstSample.DB.Category)">
+        <MappingFragment StoreEntitySet="Categories">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ActorMovies">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelFirstSample.DB.ActorMovie)">
+        <MappingFragment StoreEntitySet="ActorMovies">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="MovieId" ColumnName="MovieId" />
+          <ScalarProperty Name="ActorId" ColumnName="ActorId" />
+          <ScalarProperty Name="MovieId1" ColumnName="MovieId1" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CategoryMovies">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelFirstSample.DB.CategoryMovie)">
+        <MappingFragment StoreEntitySet="CategoryMovies">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="MovieId" ColumnName="MovieId" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
